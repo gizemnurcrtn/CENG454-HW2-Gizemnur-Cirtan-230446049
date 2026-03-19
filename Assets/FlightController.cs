@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class FlightController : MonoBehaviour
 {
-    public float speed = 10f;
-    public float rotationSpeed = 60f;
+    public float speed = 12f;
+    public float rotationSpeed = 40f;
 
     void Update()
     {
