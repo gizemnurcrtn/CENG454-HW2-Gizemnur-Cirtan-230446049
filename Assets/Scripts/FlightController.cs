@@ -12,22 +12,26 @@ public class FlightController : MonoBehaviour
     [SerializeField] private float pitchSpeed = 45f ; //degrees/seconds
     [SerializeField] private float yawSpeed = 45f; //degrees/seconds
     [SerializeField] private float rollSpeed = 45f; //degrees/seconds
-    [SerializeField] private float thrustSpeed = 5f; //degrees/seconds
+    [SerializeField] private float thrustSpeed = 5f; //units/seconds
 
+    //Task 3-A Declare a private rigidbody field name "rb" 
     private Rigidbody rb;
 
     void Start()
     {
+        //Task 3-B
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
     }
 
     void Update()
     {
+        //call movement every frame
         HandleRotation();
         HandleThrust();
     }
 
+    //task 3-c
     private void HandleRotation()
     {
         float pitchInput = Input.GetAxis("Vertical");
@@ -44,6 +48,7 @@ public class FlightController : MonoBehaviour
         transform.Rotate(pitch, yaw, roll);
     }
 
+    //task 3-d
     private void HandleThrust()
     {
         float thrust = 0f;
