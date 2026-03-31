@@ -20,8 +20,8 @@ public class FlightController : MonoBehaviour
     void Start()
     {
         //Task 3-B
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
+        rb = GetComponent<Rigidbody>(); //get rigidbody
+        rb.freezeRotation = true; //stop unity physic rotation 
     }
 
     void Update()
@@ -34,28 +34,36 @@ public class FlightController : MonoBehaviour
     //task 3-c
     private void HandleRotation()
     {
-        float pitchInput = Input.GetAxis("Vertical");
-        float yawInput = Input.GetAxis("Horizontal");
+        //pitch
+        float upDownInput = Input.GetAxis("Vertical");
+        transform.Rotate( Vector3.right * upDownInput*pitchSpeed*Time.deltaTime);
+        //left right rotation
+        float leftRightInput = Input.GetAxis("Horizontal");
+        transform.Rotate( Vector3.up * leftRightInput *yawSpeed * Time.deltaTime) ;
+        // Roll (q e)
+        float rollValue = 0f ;
+        if (Input.GetKey(KeyCode.Q))
+        {
+            rollValue = 1f; // turn left
+        }
+       
+        else if (Input.GetKey(KeyCode.E))
+        {
+            rollValue = -1f; //turn right
 
-        float rollInput = 0f;
-        if (Input.GetKey(KeyCode.Q)) rollInput = 1f;
-        else if (Input.GetKey(KeyCode.E)) rollInput = -1f;
+        }
+        //rotate around z-axis based on Q or E key
+        transform.Rotate(Vector3.forward* rollValue * rollSpeed *Time.deltaTime);
 
-        float pitch = -pitchInput * pitchSpeed * Time.deltaTime;
-        float yaw = yawInput * yawSpeed * Time.deltaTime;
-        float roll = rollInput * rollSpeed * Time.deltaTime;
-
-        transform.Rotate(pitch, yaw, roll);
     }
 
     //task 3-d
     private void HandleThrust()
     {
-        float thrust = 0f;
+        if (Input.GetKey(KeyCode.Space))
+        {
+            transform.Translate(Vector3.forward * thrustSpeed * Time.deltaTime);
+        }
 
-        if (Input.GetKey(KeyCode.Space)) thrust = 1f;
-        else if (Input.GetKey(KeyCode.LeftShift)) thrust = -1f;
-
-        transform.Translate(Vector3.forward * thrust * thrustSpeed * Time.deltaTime);
     }
 }
