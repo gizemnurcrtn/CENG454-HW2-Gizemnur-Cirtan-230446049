@@ -8,6 +8,7 @@ public class FlightExamManager : MonoBehaviour
 
     private bool threatCleared = false;
     private bool missionComplete = false;
+    private bool missionFailed = false;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class FlightExamManager : MonoBehaviour
     public void EnterDangerZone()
     {
         threatCleared = false;
+        missionFailed = false;
 
         if (statusText != null)
             statusText.text = "Entered a Dangerous Zone!";
@@ -30,21 +32,38 @@ public class FlightExamManager : MonoBehaviour
     }
 
     public void ExitDangerZone()
-    {
-        threatCleared = true;
+{
+    if (missionFailed)
+        return;
 
-        if (statusText != null)
-            statusText.text = "Safe Zone";
+    threatCleared = true;
 
-        if (missionText != null)
-            missionText.text = "Threat Cleared";
-    }
+    if (statusText != null)
+        statusText.text = "Safe Zone";
+
+    if (missionText != null)
+        missionText.text = "Threat Cleared";
+}
 
     public void SetMissionComplete()
     {
         missionComplete = true;
 
+        if (statusText != null)
+            statusText.text = "Landing Successful";
+
         if (missionText != null)
             missionText.text = "Mission Complete";
     }
+
+    public void FailMission()
+{
+    missionFailed = true;
+
+    if (statusText != null)
+        statusText.text = "Aircraft Hit!";
+
+    if (missionText != null)
+        missionText.text = "Mission Failed";
+}
 }
