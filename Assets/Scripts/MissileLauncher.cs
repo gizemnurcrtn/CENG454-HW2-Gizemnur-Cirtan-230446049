@@ -1,3 +1,8 @@
+//missilelauncher.cs
+//CENG454-HW2 Midterm: Sky-High Prototype2
+//Author:Gizemnur Çırtan
+//Student ID:230446049
+
 using UnityEngine;
 
 public class MissileLauncher : MonoBehaviour
@@ -10,6 +15,9 @@ public class MissileLauncher : MonoBehaviour
 
     public GameObject Launch(Transform target)
     {
+        //Task-3A: instantiate the missile at launchpoint
+        //Task-3B: give the missile its target
+        //Task-3C: play launch audio and return the spawned missile
         if (missilePrefab == null || launchPoint == null || target == null)
             return null;
 
@@ -29,7 +37,9 @@ public class MissileLauncher : MonoBehaviour
     }
 
     public void DestroyActiveMissile()
+
     {
+        //Task-3D: destroy the current missile safely if one exists
         if (activeMissile != null)
         {
             Destroy(activeMissile);

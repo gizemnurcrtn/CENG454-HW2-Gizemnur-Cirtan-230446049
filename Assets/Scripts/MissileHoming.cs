@@ -1,3 +1,4 @@
+//missilehoming.cs
 using UnityEngine;
 
 public class MissileHoming : MonoBehaviour
@@ -8,12 +9,15 @@ public class MissileHoming : MonoBehaviour
     private Transform target;
 
     public void SetTarget(Transform newTarget)
+
     {
+        //Task-3E: cache the aircraft transform
         target = newTarget;
     }
 
     private void Update()
     {
+        //Task-3F: rorate toward the target and move forward
         if (target == null)
             return;
 

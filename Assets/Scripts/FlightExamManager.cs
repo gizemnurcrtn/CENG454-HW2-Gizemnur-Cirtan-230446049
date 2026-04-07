@@ -2,6 +2,11 @@ using UnityEngine;
 using TMPro;
 
 public class FlightExamManager : MonoBehaviour
+// TASK 3 Implementations
+    // I: Threat cleared tracking
+    // J: Failure / reset / damage handling
+    // K: HUD updates for player feedback
+
 {
     [SerializeField] private TMP_Text statusText;
     [SerializeField] private TMP_Text missionText;
@@ -19,7 +24,7 @@ public class FlightExamManager : MonoBehaviour
             missionText.text = "Mission Active";
     }
 
-    public void EnterDangerZone()
+    public void EnterDangerZone() //update the mission state and hud
     {
         threatCleared = false;
         missionFailed = false;
@@ -31,7 +36,7 @@ public class FlightExamManager : MonoBehaviour
             missionText.text = "Threat Detected";
     }
 
-    public void ExitDangerZone()
+    public void ExitDangerZone() //mark the thereat as cleared and refresh the HUD
 {
     if (missionFailed)
         return;
